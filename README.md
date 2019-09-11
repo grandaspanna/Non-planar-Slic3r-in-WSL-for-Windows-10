@@ -9,4 +9,11 @@ Why?
 An implementation of non-planar slicing was recently contributed to Slic3r. Non-planar slicing exploits continuous 3-axis movement of contemporary 3D printers to reduce the layer-step artefacts of most slicing software, resulting in more natural surfaces.
 
 However, this implementation is 
+
 https://sourceforge.net/projects/vcxsrv/
+
+
+sudo apt-get install gcc cmake build-essential libgtk2.0-dev libwxgtk3.0-dev libwx-perl libmodule-build-perl git cpanminus li
+bextutils-cppguess-perl libboost-all-dev libxmu-dev liblocal-lib-perl wx-common libopengl-perl libwx-glcanvas-perl libtb
+b-dev libxmu-dev freeglut3-dev libwxgtk-media3.0-dev libboost-thread-dev libboost-system-dev libboost-filesystem-dev lib
+curl4-openssl-dev libextutils-makemaker-cpanfile-perl
