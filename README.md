@@ -17,3 +17,21 @@ sudo apt-get install gcc cmake build-essential libgtk2.0-dev libwxgtk3.0-dev lib
 
 git clone https://github.com/Zip-o-mat/Slic3r.git
 
+ git clone https://github.com/Zip-o-mat/Slic3r.git
+cd Slic3r/
+    8  cd ..
+    9  clear
+   10  cd Slic3r/
+   11  perl Build.PL
+   12  perl Build.PL --gui
+   13  mkdir build
+   14  cd build
+   15  cmake ..
+   16  export PERL5LIB=~/Slic3r/local-lib/lib/perl5
+   17  make
+   18  sudo apt-get install mwm
+   19  clear
+   20  export DISPLAY=localhost:0
+   21  mwm&
+   22  cd ..
+   23  perl slic3r.pl --gui
