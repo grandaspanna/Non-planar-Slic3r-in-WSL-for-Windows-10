@@ -5,14 +5,14 @@ This document describes how to get the non-planar fork of Slic3r working on a Wi
 
 WSL does not readily support graphics applications natively, so we use an "XServer" running in the Windows environment to allow Slic3r to operate in GUI mode. Once more, for a consistent starting point, this document uses VcXsrv as the X server, but in principle, any X server would yield the same result.
 
-Why?
+# Why?
 An implementation of non-planar slicing was recently contributed to Slic3r. Non-planar slicing exploits continuous 3-axis movement of contemporary 3D printers to reduce the layer-step artefacts of most slicing software, resulting in more natural surfaces.
 
 However, this implementation is 
 
 https://sourceforge.net/projects/vcxsrv/
 
-
+```
 sudo apt-get update
 
 sudo apt-get install gcc cmake build-essential libgtk2.0-dev libwxgtk3.0-dev libwx-perl libmodule-build-perl git cpanminus libextutils-cppguess-perl libboost-all-dev libxmu-dev liblocal-lib-perl wx-common libopengl-perl libwx-glcanvas-perl libtbb-dev libxmu-dev freeglut3-dev libwxgtk-media3.0-dev libboost-thread-dev libboost-system-dev libboost-filesystem-dev libcurl4-openssl-dev libextutils-makemaker-cpanfile-perl
@@ -32,3 +32,4 @@ export DISPLAY=localhost:0
 mwm&
 cd ..
 perl slic3r.pl --gui
+```
