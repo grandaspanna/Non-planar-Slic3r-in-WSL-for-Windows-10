@@ -8,9 +8,25 @@ WSL does not readily support graphics applications natively, so we use an "XServ
 ## Why?
 An implementation of non-planar slicing was recently contributed to Slic3r. Non-planar slicing exploits continuous 3-axis movement of contemporary 3D printers to reduce the layer-step artefacts of most slicing software, resulting in more natural surfaces.
 
-However, this implementation is 
+However, this implementation needs to be built and compiled in order to run it, hence these instructions for those who are keen to try, but less familiar with these tasks.
 
-https://sourceforge.net/projects/vcxsrv/
+## How?
+Described here is how to enable and install a Linux-based operating system into a current version of Windows 10 and then install and configure slic3r within it. It will display it's graphical UI inside the window of an XServer application.
+
+### Step 1 - Install an XServer
+Although any compliant XServer should work, I've tried and tested using the VcXsrv implementation. Download it from here: https://sourceforge.net/projects/vcxsrv/. It should install like almost any other piece of software, but make sure that you grant it access to the local network (if asked).
+
+### Step 2 - Enable the WSL feature in Windows 10
+There's a few screens to bounce through here, but nothing too complicated, just clicking links and boxes.
+
+### Step 3 - Install a Linux distribution
+Linux operating systems come in many flavours, and some compatible ones are available in the Windows Store. As described above, I've used the Ubuntu distribution as a reference. Other distributions can be made to work, but the following instructions may be incomplete for them.
+
+Launch the Windows Store app on your Windows 10 computer. Search for "Ubuntu" and install it. As of the time of writing this, it was about a 200MB download, so download/install times will vary.
+
+The first time you launch it, you will be asked to nominate a user name and a password. I strongly advocate that you remember these :-)
+
+You'll eventually get a console-looking window with a "$" prompt. That's your command shell and here you can type (or cut-and-paste) the commands below. Follow the steps carefully and you should succeed in getting a running non-planar slicer.
 
 After installing and starting Ubuntu in WSL, it's important to refresh its catalogue of available software. Other steps will fail if this isn't done.
 ```
