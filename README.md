@@ -68,47 +68,80 @@ sudo apt-get update
 ```
 ![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(15).png )
 
-This can take some time (10-20 minutes) so don't stress and this is a reasonable time to do something else. Also, a decent amount of data will get downloaded. In my case, close to 1GB:
-![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(17).png )
-
-Once it's downloaded, the updates will be applied automatically. If you get a prompt like this, saying "Yes" is a good option:
-![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(18).png )
-
-Once that's done, you'll be back to a console window that looks like this:
-![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(19).png )
-
 There shouldn't be anything that looks like an error message. If there is, best hit up your favourite search engine.
+
+### Step 4 - Download pre-requisite components
 
 This next command downloads all of the pre-requisite software components that will allow the build to proceed. This step will take a few minutes, depending on the speed of your computer and Internet connection.
 
 ```
 sudo apt-get install gcc cmake build-essential libgtk2.0-dev libwxgtk3.0-dev libwx-perl libmodule-build-perl git cpanminus libextutils-cppguess-perl libboost-all-dev libxmu-dev liblocal-lib-perl wx-common libopengl-perl libwx-glcanvas-perl libtbb-dev libxmu-dev freeglut3-dev libwxgtk-media3.0-dev libboost-thread-dev libboost-system-dev libboost-filesystem-dev libcurl4-openssl-dev libextutils-makemaker-cpanfile-perl
 ```
-Now, we grab the code for the slicer itself:
+
+This can take some time (10-20 minutes) so don't stress and this is a reasonable time to do something else. Also, a decent amount of data will get downloaded. In my case, close to 1GB:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(17).png )
+
+Once it's downloaded, the updates will be applied automatically. If you get a prompt like this, saying "Yes" is a good option:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(18).png )
+
+### Step 4 - Download the slicer software
+
+Now, we grab the code for the slicer itself. This is done using git, which talks to the repository on github:
 ```
 git clone https://github.com/Zip-o-mat/Slic3r.git
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(24).png )
 
-The build now begins in a series of discrete steps:
+### Step 5 - Prepare the build
+
+This will have unpacked a directory tree into the directory where you started. The build now begins in a series of discrete steps:
 ```
 cd Slic3r/
 perl Build.PL
 perl Build.PL --gui
 ```
 The above steps will take a while and a number of warnings will likely be displayed, but don't despair!
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(26).png )
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(29).png )
 
+### Step 6 - Final build
 So far, we've prepared the libraries and environment for the last few build steps.
 ```
 mkdir build
 cd build
 cmake ..
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(30).png )
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(32).png )
 Don't be surprised to see quite a few warning messages again, but these are normal.
+
+Here comes the heavy lifting, where the code is turned into usable programs:
+
 ```
 export PERL5LIB=~/Slic3r/local-lib/lib/perl5
 make
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(34).png )
+
+At the end, you hopefully see something like this:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(35).png )
+
 The code should now be compiled and just about ready to run!
+
+### Step 7 - Launch the X Server
+
+VcXsrv usually puts an "XLaunch" shortcut somewhere, so start that. You'll get a series of popups asking configuration questions. With a bit more experience, feel free to play with these, but for now, the following options work pretty well:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(36).png )
+This means just run one window on your desktop for multiple apps to share.
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(37).png )
+This just says you'll decide in a little while what to run.
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(38).png )
+Just take the defaults here
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(39).png )
+Press "Finish" and you're done.
+You may (depending on your Windows configuration) get a popup like this:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(40).png )
+Best "allow access", otherwise software won't be able to talk to it.
 
 Let's install a window manager (in the X Window System, the movement of windows is a separate piece of functionality).
 ```
@@ -118,6 +151,7 @@ This next command tells the programs where to send their output (it's inherent t
 ```
 export DISPLAY=localhost:0
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(41).png )
 
 Launch the window manager in the background:
 ```
@@ -128,3 +162,30 @@ Move up one directory level and launch the slicer:
 cd ..
 perl slic3r.pl --gui
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(42).png )
+
+All being well, Slicr3 should appear in the window running the XServer:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(43).png )
+
+yay.
+
+### A word about files
+
+All of your normal Windows files are available from the WSL environment.
+
+Each drive on your PC is automatically placed into the WSL filesystem tree under "/mnt/<drive>".
+
+So, to load a file from your "Downloads" directory, you can navigate to "/mnt/c/users/<yourname>/Downloads"
+  
+You can read and write files this way, so loading STL files and writing gcode is simple.
+
+### Slic3r configuration
+
+You'll need to setup Slic3r the first time it runs. Get the bed size, nozzle size and filament size correct, otherwise you will have problems. I won't go into printer-specific issues here, since are well covered elsewhere.
+
+I'm no expert on the non-planar configuration, but the settings are found in the "Print settings" tab. Here's an example screenshot:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(52).png )
+
+### Wrap-up
+
+I hope this has been useful!
