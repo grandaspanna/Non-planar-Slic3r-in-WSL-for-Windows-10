@@ -18,7 +18,7 @@ Although any compliant XServer should work, I've tried and tested using the VcXs
 
 ### Step 2 - Enable the WSL feature in Windows 10
 There's a few screens to bounce through here, but nothing too complicated, just clicking links and boxes.
-![Enabling WSL](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(3).png | width=250 )
+![](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(3).png | width=250 )
 
 
 ### Step 3 - Install a Linux distribution
