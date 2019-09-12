@@ -15,6 +15,16 @@ Described here is how to enable and install a Linux-based operating system into 
 
 ### Step 1 - Install an XServer
 Although any compliant XServer should work, I've tried and tested using the VcXsrv implementation. Download it from here: https://sourceforge.net/projects/vcxsrv/. It should install like almost any other piece of software, but make sure that you grant it access to the local network (if asked).
+When I grabbed it, the page looked like this:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(20).png )
+
+When it's downloaded, just run the installer:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(21).png )
+
+I ran with the defaults, but no reason you can't decided where you want it to go:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(22).png )
+
+Nothing else to do on this front, we'll come back to it later.
 
 ### Step 2 - Enable the WSL feature in Windows 10
 There's a few screens to bounce through here, but nothing too complicated, just clicking links and boxes.
@@ -24,23 +34,51 @@ Firstly, launch the control panel:
 Choose "Apps", but note that depending on your screen size, it may appear in a different place and then "Programs and Features"
 ![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(4).png )
 ![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(5).png )
+Select the link over on the left that says "Turn Windows features on or off" and this should pop up:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(6).png )
+Select the option for "Windows Subsystem for Linux" (if not already selected):
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(7).png )
 
-![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(31).png )
+Things will whirr and eventually you'll be asked to restart. Probably not a bad idea:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(8).png )
 
+After the restart, you now have WSL activated, but no Linux installed just yet.
 
 ### Step 3 - Install a Linux distribution
 Linux operating systems come in many flavours, and some compatible ones are available in the Windows Store. As described above, I've used the Ubuntu distribution as a reference. Other distributions can be made to work, but the following instructions may be incomplete for them.
 
 Launch the Windows Store app on your Windows 10 computer. Search for "Ubuntu" and install it. As of the time of writing this, it was about a 200MB download, so download/install times will vary.
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(9).png )
 
-The first time you launch it, you will be asked to nominate a user name and a password. I strongly advocate that you remember these :-)
+After it's installed, press the "Launch" button:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(10).png )
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(11).png )
 
-You'll eventually get a console-looking window with a "$" prompt. That's your command shell and here you can type (or cut-and-paste) the commands below. Follow the steps carefully and you should succeed in getting a running non-planar slicer.
+The first time you launch it, you will be asked to nominate a user name and a password. I strongly advocate that you remember these :-) You will need to enter the password for commands that appear below.
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(12).png )
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(13).png )
+
+Congratulations, you now have a working Linux subsystem in Windows 10!
+
+You'll have a console-looking window with a "$" prompt. That's your command shell and here you can type (or cut-and-paste) the commands below. Follow the steps carefully and you should succeed in getting a running non-planar slicer.
 
 After installing and starting Ubuntu in WSL, it's important to refresh its catalogue of available software. Other steps will fail if this isn't done.
 ```
 sudo apt-get update
 ```
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(15).png )
+
+This can take some time (10-20 minutes) so don't stress and this is a reasonable time to do something else. Also, a decent amount of data will get downloaded. In my case, close to 1GB:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(17).png )
+
+Once it's downloaded, the updates will be applied automatically. If you get a prompt like this, saying "Yes" is a good option:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(18).png )
+
+Once that's done, you'll be back to a console window that looks like this:
+![image](https://github.com/grandaspanna/Non-planar-Slic3r-in-WSL-for-WIndows-10/blob/master/images/Screenshot%20(19).png )
+
+There shouldn't be anything that looks like an error message. If there is, best hit up your favourite search engine.
+
 This next command downloads all of the pre-requisite software components that will allow the build to proceed. This step will take a few minutes, depending on the speed of your computer and Internet connection.
 
 ```
